@@ -75,6 +75,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 4
   rotationSpeed: 10
+  PlayerEtat: 1
 --- !u!1001 &4063009167860890200
 PrefabInstance:
   m_ObjectHideFlags: 0

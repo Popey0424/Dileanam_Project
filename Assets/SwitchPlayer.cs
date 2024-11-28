@@ -8,19 +8,19 @@ public class SwitchPlayer : MonoBehaviour
     //public enum Etat { PlayerX, PlayerY }
     [SerializeField] private KeyCode switchMode;
     private PlayerMovement playerMovement;
-    private Player.Etat currentEtat; 
+    private Player.Etat currentEtat;
     public GameObject playerY;
     public GameObject playerX;
-  
+
 
     private void Start()
-    {   
-        
+    {
+
         playerMovement = GetComponent<PlayerMovement>();
         currentEtat = Player.Etat.PlayerX;
         playerY.SetActive(false);
 
-       
+
     }
 
     private void Update()
@@ -51,6 +51,5 @@ public class SwitchPlayer : MonoBehaviour
     }
 
 }
-
 
 
