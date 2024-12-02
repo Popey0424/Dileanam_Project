@@ -12,12 +12,18 @@ public class SwitchPlayer : MonoBehaviour
     public GameObject playerY;
     public GameObject playerX;
 
+    [Header("PlayersAnimator")]
+    private Animator animatorPlayerX;
+    private Animator animatorPlayerY;
+
 
     private void Start()
     {
 
         playerMovement = GetComponent<PlayerMovement>();
         currentEtat = Player.Etat.PlayerX;
+
+        animatorPlayerX = playerX.GetComponent<Animator>();
         playerY.SetActive(false);
 
 
@@ -36,15 +42,20 @@ public class SwitchPlayer : MonoBehaviour
         if (currentEtat == Player.Etat.PlayerX)
         {
             currentEtat = Player.Etat.PlayerY;
+            animatorPlayerX.SetBool("Die", true);
             playerY.SetActive(true);
             playerY.transform.position = playerX.transform.position;
-            playerX.SetActive(false);
+            playerX.GetComponent<Rigidbody>().isKinematic = true;
+            playerX.GetComponent<PlayerMovement>().enabled = false;
             Debug.Log("Ca marche");
         }
         else if (currentEtat == Player.Etat.PlayerY)
         {
+            
             currentEtat = Player.Etat.PlayerX;
-            playerX.SetActive(true);
+            animatorPlayerX.SetBool("Die",false);
+            playerX.GetComponent<Rigidbody>().isKinematic = true;
+            playerX.GetComponent <PlayerMovement>().enabled = true;
             playerY.SetActive(false);
             Debug.Log("Ca marche");
         }
