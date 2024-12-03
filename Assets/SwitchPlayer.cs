@@ -5,12 +5,17 @@ using UnityEngine;
 
 public class SwitchPlayer : MonoBehaviour
 {
-    //public enum Etat { PlayerX, PlayerY }
-    [SerializeField] private KeyCode switchMode;
+
+
+
+    [Header("Scripts Reference")]
     private PlayerMovement playerMovement;
-    private Player.Etat currentEtat;
-    public GameObject playerY;
-    public GameObject playerX;
+
+    [Header("SwitchPlayer Settings")]
+    [SerializeField] private KeyCode switchMode;
+    public Player.Etat CurrentEtat;
+    public GameObject PlayerY;
+    public GameObject PlayerX;
 
     [Header("PlayersAnimator")]
     private Animator animatorPlayerX;
@@ -21,10 +26,10 @@ public class SwitchPlayer : MonoBehaviour
     {
 
         playerMovement = GetComponent<PlayerMovement>();
-        currentEtat = Player.Etat.PlayerX;
+        CurrentEtat = Player.Etat.PlayerX;
 
-        animatorPlayerX = playerX.GetComponent<Animator>();
-        playerY.SetActive(false);
+        animatorPlayerX = PlayerX.GetComponent<Animator>();
+        PlayerY.SetActive(false);
 
 
     }
@@ -39,27 +44,32 @@ public class SwitchPlayer : MonoBehaviour
 
     private void SwitchState()
     {
-        if (currentEtat == Player.Etat.PlayerX)
+        if (CurrentEtat == Player.Etat.PlayerX)
         {
-            currentEtat = Player.Etat.PlayerY;
+            CurrentEtat = Player.Etat.PlayerY;
             animatorPlayerX.SetBool("Die", true);
-            playerY.SetActive(true);
-            playerY.transform.position = playerX.transform.position;
+            PlayerY.SetActive(true);
+            PlayerY.transform.position = PlayerX.transform.position;
             //playerX.GetComponent<Collider>().enabled = false;
-            playerX.GetComponent<Rigidbody>().isKinematic = true;
-            playerX.GetComponent<PlayerMovement>().enabled = false;
+            PlayerX.GetComponent<Rigidbody>().isKinematic = true;
+            PlayerX.GetComponent<PlayerMovement>().enabled = false;
             Debug.Log("Ca marche");
         }
-        else if (currentEtat == Player.Etat.PlayerY)
+        else if (CurrentEtat == Player.Etat.PlayerY)
         {
             
-            currentEtat = Player.Etat.PlayerX;
+            CurrentEtat = Player.Etat.PlayerX;
             animatorPlayerX.SetBool("Die",false);
             //playerX.GetComponent<Collider>().enabled = false;
-            playerX.GetComponent<Rigidbody>().isKinematic = true;
-            playerX.GetComponent <PlayerMovement>().enabled = true;
-            playerY.SetActive(false);
+            PlayerX.GetComponent<Rigidbody>().isKinematic = true;
+            PlayerX.GetComponent <PlayerMovement>().enabled = true;
+            PlayerY.SetActive(false);
             Debug.Log("Ca marche");
+        }
+        else if(CurrentEtat == Player.Etat.InPossesion)
+        {
+            Debug.Log("Ne peut pas revenir en PlayerX ");
+            //Ajouter le passage au player Y;
         }
     }
 

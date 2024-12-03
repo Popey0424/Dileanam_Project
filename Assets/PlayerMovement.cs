@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-
+    [Header("Movement Settings")]
     [SerializeField] private float moveSpeed;     
     [SerializeField] private float rotationSpeed;
     public Player.Etat PlayerEtat;
@@ -41,5 +41,5 @@ public class PlayerMovement : MonoBehaviour
 [System.Serializable]
 public class Player
 {
-    public enum Etat { PlayerX, PlayerY }
+    public enum Etat { PlayerX, PlayerY, InPossesion }
 }
