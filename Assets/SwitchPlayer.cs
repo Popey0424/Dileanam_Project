@@ -45,6 +45,7 @@ public class SwitchPlayer : MonoBehaviour
             animatorPlayerX.SetBool("Die", true);
             playerY.SetActive(true);
             playerY.transform.position = playerX.transform.position;
+            //playerX.GetComponent<Collider>().enabled = false;
             playerX.GetComponent<Rigidbody>().isKinematic = true;
             playerX.GetComponent<PlayerMovement>().enabled = false;
             Debug.Log("Ca marche");
@@ -54,6 +55,7 @@ public class SwitchPlayer : MonoBehaviour
             
             currentEtat = Player.Etat.PlayerX;
             animatorPlayerX.SetBool("Die",false);
+            //playerX.GetComponent<Collider>().enabled = false;
             playerX.GetComponent<Rigidbody>().isKinematic = true;
             playerX.GetComponent <PlayerMovement>().enabled = true;
             playerY.SetActive(false);
