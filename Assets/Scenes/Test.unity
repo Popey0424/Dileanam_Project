@@ -377,6 +377,12 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 1
+--- !u!1 &511132348 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2700198244241325211, guid: 967e57afeef2b3b4ebfe4809ec5f9d1b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1855422528}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &511132351 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7118463250521575765, guid: 967e57afeef2b3b4ebfe4809ec5f9d1b,
@@ -733,14 +739,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51f1b92b3d10d3b468205d3749bfddc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  S_boxCharacterMovement: {fileID: 0}
-  S_switchplayer: {fileID: 0}
+  S_boxCharacterMovement: {fileID: 571503475}
+  S_switchplayer: {fileID: 1405807681}
   InteractableLayer:
     serializedVersion: 2
     m_Bits: 64
   Interactable: 99
   canChangeToBox: 0
-  playerY: {fileID: 0}
+  playerY: {fileID: 1180371375}
   CurrentPossession: 0
   isInRange: 0
 --- !u!136 &1180371382
@@ -814,8 +820,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   switchMode: 121
   CurrentEtat: 0
-  PlayerY: {fileID: 0}
-  PlayerX: {fileID: 0}
+  PlayerY: {fileID: 1180371375}
+  PlayerX: {fileID: 511132348}
 --- !u!1001 &1855422528
 PrefabInstance:
   m_ObjectHideFlags: 0
