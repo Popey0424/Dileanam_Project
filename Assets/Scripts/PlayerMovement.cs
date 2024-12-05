@@ -41,5 +41,5 @@ public class PlayerMovement : MonoBehaviour
 [System.Serializable]
 public class Player
 {
-    public enum Etat { PlayerX, PlayerY, InPossesion }
+    public enum Etat { PlayerX, PlayerY, InPossesion, PlayerYReturn, PlayerArrived }
 }
