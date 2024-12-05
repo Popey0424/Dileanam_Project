@@ -68,6 +68,7 @@ public class SwitchPlayer : MonoBehaviour
         }
         else if(CurrentEtat == Player.Etat.InPossesion)
         {
+            //CurrentEtat = Player.Etat.PlayerX;
             Debug.Log("Ne peut pas revenir en PlayerX ");
             //Ajouter le passage au player Y;
         }
