@@ -8,20 +8,27 @@ public class PossesionScript : MonoBehaviour
 
     [Header("Scripts Reference")]
     public BoxCharacterMovement S_boxCharacterMovement;
+    public GuardCharacterMovement S_guardCharacterMovement;
     public SwitchPlayer S_switchplayer;
 
     [Header("Collision Settings")]
     public LayerMask InteractableLayer;
     public KeyCode Interactable;
-    [SerializeField] private bool canChangeToBox = false;
+    
     [SerializeField] private GameObject playerY;
     [SerializeField] private GameObject playerYSkin;
-    [SerializeField] private GameObject box;
+   
 
     [Header("Classes")]
     public PossesionPossibility.Possession CurrentPossession;
 
+    [Header("BoxSettings")]
+    [SerializeField] private GameObject box;
+    [SerializeField] private bool canChangeToBox = false;
 
+    [Header("GuardSettigns")]
+    [SerializeField] private GameObject guard;
+    [SerializeField] private bool canChangeToGuard = false;
 
     [Header("Debug")]
     [SerializeField] private bool isInRange = false;
@@ -59,16 +66,7 @@ public class PossesionScript : MonoBehaviour
         //}
         
     }
-
-
-    #region Possesion Statue
-
-    #endregion
-
-
-
-
-    #region possesion Box
+    
     private void OnTriggerEnter(Collider collider)
     {
         if (collider.GetComponent<BoxCharacterMovement>() != null)
@@ -77,18 +75,31 @@ public class PossesionScript : MonoBehaviour
             isInRange = true;
             canChangeToBox = true;
         }
+        if (collider.GetComponent<GuardCharacterMovement>() != null)
+        {
+            Debug.Log("Collision avec Guard Detecter");
+            isInRange = true;
+            canChangeToGuard = true;
+        }
     }
 
     private void OnTriggerExit(Collider collider)
     {
         if (collider.GetComponent<BoxCharacterMovement>() != null)
         {
-            Debug.Log("Leave collision");
+            Debug.Log("Leave la collision Box");
             isInRange = false;
             canChangeToBox = false;
         }
+        if (collider.GetComponent<GuardCharacterMovement>() != null)
+        {
+            Debug.Log("Leave la collision Guard");
+            isInRange = false;
+            canChangeToGuard = false;
+        }
     }
 
+    #region PossesionBox
     private void ChangeToBox()
     {
         Debug.Log("Player Y devient Box");
@@ -99,6 +110,23 @@ public class PossesionScript : MonoBehaviour
         CurrentPossession = PossesionPossibility.Possession.Box;
         S_boxCharacterMovement.PosseseBox = true;
         canChangeToBox=false;
+    }
+    #endregion
+
+
+
+    #region possesion Guard
+
+    private void ChangeToGuard()
+    {
+        Debug.Log("Player Y devient Guard");
+        playerY.GetComponent<PlayerMovement>().enabled = false;
+        playerYSkin.SetActive(false);
+        S_switchplayer.CurrentEtat = Player.Etat.InPossesion;
+        Debug.Log(S_switchplayer.CurrentEtat);
+        CurrentPossession = PossesionPossibility.Possession.Guard;
+        S_guardCharacterMovement.PosseseGuard = true;
+        canChangeToGuard = false;
 
     }
     #endregion
@@ -127,6 +155,14 @@ public class PossesionScript : MonoBehaviour
             Debug.Log("Retransformation");
             GoBackToPlayerY();
         }
+        if (isInRange && CurrentPossession == PossesionPossibility.Possession.PlayerY && canChangeToGuard == true)
+        {
+            ChangeToGuard();
+        }
+        else if (CurrentPossession == PossesionPossibility.Possession.Guard)
+        {
+            GoBackToPlayerY();
+        }
     }
 }
 
@@ -136,5 +172,5 @@ public class PossesionScript : MonoBehaviour
 [System.Serializable]
 public class PossesionPossibility
 {
-    public enum Possession { PlayerY, Box};
+    public enum Possession { PlayerY, Box, Guard};
 }
