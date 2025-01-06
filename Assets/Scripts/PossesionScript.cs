@@ -9,6 +9,7 @@ public class PossesionScript : MonoBehaviour
     [Header("Scripts Reference")]
     public BoxCharacterMovement S_boxCharacterMovement;
     public GuardCharacterMovement S_guardCharacterMovement;
+    public MagicianCharacterController S_magicianCharacterMovement;
     public SwitchPlayer S_switchplayer;
     public CameraFollow S_cameraFollow;
 
@@ -31,10 +32,15 @@ public class PossesionScript : MonoBehaviour
     [SerializeField] private GameObject guard;
     [SerializeField] private bool canChangeToGuard = false;
 
+    [Header("MagicianSettings")]
+    [SerializeField] private GameObject magician;
+    [SerializeField] private bool canChangeToMagician = false;
+
+
     [Header("Debug")]
     [SerializeField] private bool isInRange = false;
     [SerializeField] private bool actualyInPossese = false;
-    private int cpt = 1;
+    
 
     
 
@@ -84,6 +90,12 @@ public class PossesionScript : MonoBehaviour
             isInRange = true;
             canChangeToGuard = true;
         }
+        if(collider.GetComponent<MagicianCharacterController>() != null)
+        {
+            Debug.Log("Collision avec Magician Detecter");
+            isInRange = true;
+            canChangeToMagician = true;
+        }
     }
 
     private void OnTriggerExit(Collider collider)
@@ -100,6 +112,12 @@ public class PossesionScript : MonoBehaviour
             isInRange = false;
             canChangeToGuard = false;
         }
+        if (collider.GetComponent<MagicianCharacterController>() != null)
+        {
+            Debug.Log("Leave la collision Magician");
+            isInRange = false;
+            canChangeToMagician = false;
+        } 
     }
 
     #region PossesionBox
@@ -135,6 +153,26 @@ public class PossesionScript : MonoBehaviour
     }
     #endregion
 
+
+    #region Magician
+
+    private void ChangeToMagician()
+    {
+        Debug.Log("Player Y devient Magicien");
+        playerY.GetComponent<PlayerMovement>().enabled = false;
+        playerYSkin.SetActive(false);
+        S_switchplayer.CurrentEtat = Player.Etat.InPossesion;
+        Debug.Log(S_switchplayer.CurrentEtat);
+        CurrentPossession = PossesionPossibility.Possession.Magician;
+        S_magicianCharacterMovement.PosseseMagician = true;
+        canChangeToMagician = false;
+        S_cameraFollow.UpdateTarget(magician.transform);
+    }
+
+
+    #endregion
+
+
     private void GoBackToPlayerY()
     {
         if (CurrentPossession == PossesionPossibility.Possession.Box)
@@ -160,7 +198,18 @@ public class PossesionScript : MonoBehaviour
             S_guardCharacterMovement.PosseseGuard = false;
             S_cameraFollow.UpdateTarget(playerY.transform);
         }
-       
+        if (CurrentPossession == PossesionPossibility.Possession.Magician)
+        {
+            Debug.Log("MAgician Devient Player Y");
+            playerY.GetComponent<PlayerMovement>().enabled = true;
+            playerYSkin.SetActive(true);
+            playerY.transform.position = magician.transform.position + new Vector3(0, 0f, 0);
+            S_switchplayer.CurrentEtat = Player.Etat.PlayerY;
+            CurrentPossession = PossesionPossibility.Possession.PlayerY;
+            S_magicianCharacterMovement.PosseseMagician = false;
+            S_cameraFollow.UpdateTarget(playerY.transform);
+        }
+
     }
 
     private void switchEtatPossession()
@@ -183,6 +232,19 @@ public class PossesionScript : MonoBehaviour
         {
             GoBackToPlayerY();
         }
+
+        if (isInRange && CurrentPossession == PossesionPossibility.Possession.PlayerY && canChangeToMagician == true)
+        {
+            ChangeToMagician();
+        }
+        else if (CurrentPossession == PossesionPossibility.Possession.Magician)
+        {
+            GoBackToPlayerY();
+        }
+
+
+
+
     }
 }
 
@@ -192,5 +254,5 @@ public class PossesionScript : MonoBehaviour
 [System.Serializable]
 public class PossesionPossibility
 {
-    public enum Possession { PlayerY, Box, Guard};
+    public enum Possession { PlayerY, Box, Guard, Magician};
 }
