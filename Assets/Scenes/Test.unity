@@ -265,7 +265,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: d3d13a655c79ec148ac280fe474ebe10, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -440,6 +440,12 @@ GameObject:
 --- !u!4 &511132351 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7118463250521575765, guid: 967e57afeef2b3b4ebfe4809ec5f9d1b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1855422528}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &511132352 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8999362783673305720, guid: 967e57afeef2b3b4ebfe4809ec5f9d1b,
     type: 3}
   m_PrefabInstance: {fileID: 1855422528}
   m_PrefabAsset: {fileID: 0}
@@ -689,7 +695,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: d3d13a655c79ec148ac280fe474ebe10, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -852,6 +858,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: -3778852536295790002, guid: 0fcc1e429d856ba42b9199ff6239d69f,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6d5987ffa7b0a1c4aadec90678b9a2e8, type: 2}
     - target: {fileID: -3542885339558904099, guid: 0fcc1e429d856ba42b9199ff6239d69f,
         type: 3}
       propertyPath: m_Layer
@@ -1152,7 +1163,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 3309178899430bf49b93378509859c05, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1548,6 +1559,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1405807680}
     m_Modifications:
+    - target: {fileID: 1820951337578902419, guid: 967e57afeef2b3b4ebfe4809ec5f9d1b,
+        type: 3}
+      propertyPath: AnimatorPlayerX
+      value: 
+      objectReference: {fileID: 511132352}
     - target: {fileID: 2700198244241325211, guid: 967e57afeef2b3b4ebfe4809ec5f9d1b,
         type: 3}
       propertyPath: m_Name
@@ -1755,6 +1771,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2061484734}
     m_Modifications:
+    - target: {fileID: 2603211953990901020, guid: 6882936a6f340bd4dad2253e1bd39c83,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d3d13a655c79ec148ac280fe474ebe10, type: 2}
     - target: {fileID: 4411929315316377538, guid: 6882936a6f340bd4dad2253e1bd39c83,
         type: 3}
       propertyPath: m_Name

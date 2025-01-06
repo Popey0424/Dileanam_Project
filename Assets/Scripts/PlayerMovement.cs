@@ -7,6 +7,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float rotationSpeed;
     public Player.Etat PlayerEtat;
 
+    [Header("Animator Player X")]
+    public Animator AnimatorPlayerX;
+
     private Vector3 inputDirection;
 
 
@@ -34,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
 
 
             transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+            AnimatorPlayerX.SetBool("Walk", true);
         }
     }
 }
