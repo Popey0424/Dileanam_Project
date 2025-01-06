@@ -14542,7 +14542,7 @@ Camera:
     height: 1
   near clip plane: 6.19
   far clip plane: 1000
-  field of view: 36.4
+  field of view: 40
   orthographic: 0
   orthographic size: 10.9
   m_Depth: -1
@@ -14568,13 +14568,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 489539512}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.4330127, y: -0.4330127, z: 0.25, w: 0.75}
-  m_LocalPosition: {x: 23.9, y: 25.38, z: -10.4}
+  m_LocalRotation: {x: 0.27059805, y: -0.6532815, z: 0.27059805, w: 0.6532815}
+  m_LocalPosition: {x: 23.1, y: 17.5, z: 3.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 60, y: -60, z: 0}
+  m_LocalEulerAnglesHint: {x: 45, y: -90, z: 0}
 --- !u!114 &489539516
 MonoBehaviour:
   m_ObjectHideFlags: 0
