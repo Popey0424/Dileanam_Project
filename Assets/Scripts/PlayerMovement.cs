@@ -38,7 +38,15 @@ public class PlayerMovement : MonoBehaviour
 
             transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
             AnimatorPlayerX.SetBool("Walk", true);
+            
         }
+
+
+        if(inputDirection.magnitude <= 0f)
+        {
+            AnimatorPlayerX.SetBool("Walk", false);
+        }
+        
     }
 }
 
