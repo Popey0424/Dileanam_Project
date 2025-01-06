@@ -22,6 +22,8 @@ public class SwitchPlayer : MonoBehaviour
     private Animator animatorPlayerX;
     private Animator animatorPlayerY;
 
+    [Header("Camera Reference")]
+    [SerializeField] private CameraFollow S_cameraFollow;
     
     private Rigidbody rb;
     private Vector3 ReturnPlayer;
@@ -69,22 +71,16 @@ public class SwitchPlayer : MonoBehaviour
             animatorPlayerX.SetBool("Die", true);
             PlayerY.SetActive(true);
             PlayerY.transform.position = PlayerX.transform.position;
-            //playerX.GetComponent<Collider>().enabled = false;
             PlayerX.GetComponent<Rigidbody>().isKinematic = true;
             PlayerX.GetComponent<PlayerMovement>().enabled = false;
             Debug.Log("Ca marche, ccc");
+            S_cameraFollow.UpdateTarget(PlayerY.transform);
         }
         else if (CurrentEtat == Player.Etat.PlayerY)
         {
-            //StartCoroutine(PlayerYReturn());
+          
             CurrentEtat = Player.Etat.PlayerYReturn;
             Debug.Log("Le joueur return");
-            //animatorPlayerX.SetBool("Die",false);
-            ////playerX.GetComponent<Collider>().enabled = false;
-            //PlayerX.GetComponent<Rigidbody>().isKinematic = true;
-            //PlayerX.GetComponent <PlayerMovement>().enabled = true;
-            //PlayerY.SetActive(false);
-            //Debug.Log("Ca marche");
         }
         if(CurrentEtat == Player.Etat.PlayerYReturn)
         {
@@ -93,12 +89,12 @@ public class SwitchPlayer : MonoBehaviour
             {
                 CurrentEtat = Player.Etat.PlayerX;
                 animatorPlayerX.SetBool("Die",false);
-                //playerX.GetComponent<Collider>().enabled = false;
                 PlayerX.GetComponent<Rigidbody>().isKinematic = true;
                 PlayerX.GetComponent <PlayerMovement>().enabled = true;
                 PlayerY.SetActive(false);
                 Debug.Log("Ca marche");
                 isArrived = false;
+                S_cameraFollow.UpdateTarget(PlayerX.transform);
             }
 
            
@@ -107,19 +103,13 @@ public class SwitchPlayer : MonoBehaviour
         
         else if(CurrentEtat == Player.Etat.InPossesion)
         {
-            //CurrentEtat = Player.Etat.PlayerX;
+            
             Debug.Log("Ne peut pas revenir en PlayerX ");
             //Ajouter le passage au player Y;
         }
     }
 
-    //IEnumerator PlayerYReturn()
-    //{
-    //    rb.AddForce(0,10, 0, ForceMode.Impulse );
-    //    Debug.Log("Est ce que ca amrche ");
-    //    yield return new WaitUntil (() => PlayerY.transform.position != PlayerX.transform.position);
-    //    Debug.Log("Apparement il est la");
-    //}
+    
 
 }
 

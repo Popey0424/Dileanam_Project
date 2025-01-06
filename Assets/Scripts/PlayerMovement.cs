@@ -10,6 +10,9 @@ public class PlayerMovement : MonoBehaviour
     [Header("Animator Player X")]
     public Animator AnimatorPlayerX;
 
+    [Header("Animator Player Y")]
+    public Animator AnimatorPlayerY;
+
     private Vector3 inputDirection;
 
 
@@ -37,14 +40,30 @@ public class PlayerMovement : MonoBehaviour
 
 
             transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
-            AnimatorPlayerX.SetBool("Walk", true);
-            
+
+            if (PlayerEtat == Player.Etat.PlayerX)
+            {
+                AnimatorPlayerX.SetBool("Walk", true);
+            }
+            else if (PlayerEtat == Player.Etat.PlayerY)
+            {
+                AnimatorPlayerY.SetBool("Walk", true);
+            }
+
+
         }
 
 
         if(inputDirection.magnitude <= 0f)
         {
-            AnimatorPlayerX.SetBool("Walk", false);
+            if (PlayerEtat == Player.Etat.PlayerX)
+            {
+                AnimatorPlayerX.SetBool("Walk", false);
+            }
+            else if (PlayerEtat == Player.Etat.PlayerY)
+            {
+                AnimatorPlayerY.SetBool("Walk", false);
+            }
         }
         
     }

@@ -10,6 +10,7 @@ public class PossesionScript : MonoBehaviour
     public BoxCharacterMovement S_boxCharacterMovement;
     public GuardCharacterMovement S_guardCharacterMovement;
     public SwitchPlayer S_switchplayer;
+    public CameraFollow S_cameraFollow;
 
     [Header("Collision Settings")]
     public LayerMask InteractableLayer;
@@ -34,6 +35,8 @@ public class PossesionScript : MonoBehaviour
     [SerializeField] private bool isInRange = false;
     [SerializeField] private bool actualyInPossese = false;
     private int cpt = 1;
+
+    
 
 
  
@@ -127,6 +130,7 @@ public class PossesionScript : MonoBehaviour
         CurrentPossession = PossesionPossibility.Possession.Guard;
         S_guardCharacterMovement.PosseseGuard = true;
         canChangeToGuard = false;
+        S_cameraFollow.UpdateTarget(guard.transform);
 
     }
     #endregion
@@ -142,16 +146,19 @@ public class PossesionScript : MonoBehaviour
             S_switchplayer.CurrentEtat = Player.Etat.PlayerY;
             CurrentPossession = PossesionPossibility.Possession.PlayerY;
             S_boxCharacterMovement.PosseseBox = false;
+            S_cameraFollow.UpdateTarget(playerY.transform);
+
         }
         if (CurrentPossession == PossesionPossibility.Possession.Guard)
         {
             Debug.Log("Guard Devient Player Y");
             playerY.GetComponent <PlayerMovement>().enabled = true;
             playerYSkin.SetActive(true);
-            playerY.transform.position = guard.transform.position + new Vector3(0, -0.5f, 0);
+            playerY.transform.position = guard.transform.position + new Vector3(0, 0f, 0);
             S_switchplayer.CurrentEtat = Player.Etat.PlayerY;
             CurrentPossession = PossesionPossibility.Possession.PlayerY;
             S_guardCharacterMovement.PosseseGuard = false;
+            S_cameraFollow.UpdateTarget(playerY.transform);
         }
        
     }
