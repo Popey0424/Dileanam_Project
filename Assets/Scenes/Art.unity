@@ -436,7 +436,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.9921569, g: 0.6666667, b: 0.49411768, a: 1}
-  m_Intensity: 0.03
+  m_Intensity: 0.01
   m_Range: 0.59
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -11711,7 +11711,7 @@ PrefabInstance:
     - target: {fileID: 7903651884652347436, guid: d1b7265c4d161334b9064c3aacc70d26,
         type: 3}
       propertyPath: m_Intensity
-      value: 0.03
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 7903651884652347436, guid: d1b7265c4d161334b9064c3aacc70d26,
         type: 3}
