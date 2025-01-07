@@ -48,7 +48,7 @@ public class SwitchPlayer : MonoBehaviour
             animatorPlayerX.SetBool("Die", true);
             PlayerY.SetActive(true);           
             PlayerX.GetComponent<Collider>().enabled = false;
-            PlayerY.transform.position = PlayerX.transform.position;           
+            PlayerY.transform.position = PlayerX.transform.position + new Vector3(0.5f,0,0);           
             PlayerX.GetComponent<Rigidbody>().isKinematic = true;
             PlayerX.GetComponent<PlayerMovement>().enabled = false;            
             PlayerY.GetComponent<Rigidbody>().isKinematic = false;

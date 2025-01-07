@@ -180,7 +180,7 @@ public class PossesionScript : MonoBehaviour
             Debug.Log("Box Devient Player Y");
             playerY.GetComponent<PlayerMovement>().enabled = true;
             playerYSkin.SetActive(true);
-            playerY.transform.position = box.transform.position + new Vector3(0, -0.5f, 0);
+            playerY.transform.position = box.transform.position + new Vector3(0.5f, -0.5f, 0);
             S_switchplayer.CurrentEtat = Player.Etat.PlayerY;
             CurrentPossession = PossesionPossibility.Possession.PlayerY;
             S_boxCharacterMovement.PosseseBox = false;
@@ -192,7 +192,7 @@ public class PossesionScript : MonoBehaviour
             Debug.Log("Guard Devient Player Y");
             playerY.GetComponent <PlayerMovement>().enabled = true;
             playerYSkin.SetActive(true);
-            playerY.transform.position = guard.transform.position + new Vector3(0, 0f, 0);
+            playerY.transform.position = guard.transform.position + new Vector3(0.5f, 0f, 0);
             S_switchplayer.CurrentEtat = Player.Etat.PlayerY;
             CurrentPossession = PossesionPossibility.Possession.PlayerY;
             S_guardCharacterMovement.PosseseGuard = false;
@@ -203,7 +203,7 @@ public class PossesionScript : MonoBehaviour
             Debug.Log("MAgician Devient Player Y");
             playerY.GetComponent<PlayerMovement>().enabled = true;
             playerYSkin.SetActive(true);
-            playerY.transform.position = magician.transform.position + new Vector3(0, 0f, 0);
+            playerY.transform.position = magician.transform.position + new Vector3(0.5f, 0f, 0);
             S_switchplayer.CurrentEtat = Player.Etat.PlayerY;
             CurrentPossession = PossesionPossibility.Possession.PlayerY;
             S_magicianCharacterMovement.PosseseMagician = false;

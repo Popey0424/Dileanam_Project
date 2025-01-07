@@ -87,7 +87,7 @@ public class MagicianCharacterController : MonoBehaviour
         {
             Physics.IgnoreCollision(playerY.GetComponent<Collider>(), wallCollider, true);
             lastInteractedWall = wall;
-            Invoke(nameof(ResetWallCollision), 5f);
+   
         }
     }
 
